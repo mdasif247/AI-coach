@@ -22,15 +22,17 @@ app.post("/api/analyze", upload.single("resume"), async (req, res) => {
   try {
     const data = await pdfParse(req.file.buffer);
     const prompt = `
-      Analyze the following resume and provide:
-      1. Overall resume rating out of 10
-      2. 3 suitable career paths
-      3. Technical strengths
-      4. Weak areas or missing topics
-      5. Soft skill analysis
-      6. ATS keyword match (for Software Engineer)
-      7. Project recommendations to boost resume
-      8. A 30-day upskilling roadmap
+      Analyze the resume below and return a JSON object with the following fields:
+      {
+        "rating": "number out of 10",
+        "career_paths": ["...", "..."],
+        "strengths": ["...", "..."],
+        "weaknesses": ["...", "..."],
+        "soft_skills": ["...", "..."],
+        "ats_match": "string",
+        "project_ideas": ["...", "..."],
+        "roadmap": ["Week 1: ...", "Week 2: ..."]
+      }
 
       Resume:
       ${data.text}
