@@ -45,5 +45,5 @@ app.post("/api/analyze", upload.single("resume"), async (req, res) => {
     res.status(500).json({ error: "Failed to process resume" });
   }
 });
-
+console.log("heeeyy")
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
